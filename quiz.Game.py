@@ -1,41 +1,45 @@
-print("Quiz game ")
-playing = input("Do you want to play? Y/N")
+def main():
+    print("Welcome to the Quiz Game ")
 
-   
-if playing.lower() != 'y':
-    quit()
+    playing = input("Do you want to play? Y/N: ")
 
-print("Okay lets play :) ")
-score = 0 
+    if playing.lower() != 'y':
+         quit_game()
 
-answer = input("what dose CPU stand for ? ").lower()
-if answer == "central processing unit":
-    print("Correct! ")
-    score += 1
-else: 
-    print("Incorrect !!")
-
+    print("Great! Let's begin.")
     
-answer = input("what dose GPU stand for ? ").lower()
-if answer == "graphics processing unit":
-    print("Correct! ")
-    score += 1
+    questions = [
+    ("What does CPU stand for? ", "central processing unit"),
+    ("What does GPU stand for? ", "graphics processing unit"),
+    ("What does RAM stand for? ", "random access memory")
+    ]
     
-else: 
-    print("Incorrect !!")
+    score = conduct_quiz(questions)
+    display_results(score, len(questions))
+
+  
+    def quit_game():
+        print("Thank you for considering playing the Quiz Game. Goodbye!")
+        exit()  
     
     
-answer = input("what dose RAM stand for ? ").lower()
-if answer == "random access memory":
-    print("Correct! ")
-    score += 1
-
-else: 
-    print("Incorrect !!")
-    
-
-print("You got : " + str(score) + " questions correct!")
-print("You got : " + str((score / 3) * 100 ) + "%")
-
-    
-    
+    def conduct_quiz(questions):
+        score = 0 
+        for question , correct_answer in questions:
+            answer = input(question).lower()
+            if answer == correct_answer:
+                print("Correct :) ")
+                score += 1
+            else:
+                print("Incorrect :( ")
+        return score
+        
+        
+    def display_results(score, total_questions):
+        print(f"You got {score} out of {total_questions} questions correct!")
+        percentage = (score / total_questions) * 100
+        print(f"You scored {percentage:.2f}%.")
+        
+    if __name__ == "__main__":
+        main()
+        
