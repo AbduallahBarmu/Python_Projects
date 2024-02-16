@@ -5,7 +5,6 @@ def main():
 
     if playing.lower() != 'y':
         quit_game()
-
     print("Great! Let's begin.")
 
     questions = [
